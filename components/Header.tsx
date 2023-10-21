@@ -1,9 +1,14 @@
-import React from 'react'
 import Logo from './Logo'
 import DarkMoodToogle from './DarkMoodToogle'
 import UserButton from './UserButton'
+import { authOptions } from '@/auth'
+import Link from 'next/link'
+import { MessagesSquareIcon} from "lucide-react"
+import { getServerSession } from "next-auth"
 
-function Header() {
+
+async function Header() {
+ const session = await getServerSession(authOptions);
   return (
     <header  className='sticky top-0 bg-white dark:bg-gray-900'>
        <nav className='flex  flex-col sm:flex-row items-center p-5 pl-2 bg-white
@@ -14,12 +19,23 @@ function Header() {
           {/**Language Select  */}
 
           {/**Sesson && .... */}
+          {session ? (
+            <>
+            <Link
+            href={"/chat"} prefetch={false}
+            >
+             <MessagesSquareIcon className='text-black dark:text-white'/>
+             </Link>
+            </>
+          ): (
+            <Link href="/pricing "> Pricing </Link>
+          )}
 
           {/**Dark Mood Toogle  */}
           <DarkMoodToogle/>
 
           {/**User Button */}
-          <UserButton/>
+          <UserButton session={session}/>
         </div>
        </nav>
 
