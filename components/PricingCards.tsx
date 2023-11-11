@@ -14,7 +14,7 @@ const tiers = [
     features: [
         "20 Message Chat Limit in Chats",
         "2 Parcticipant limit in Chat",
-        "# Chat Rooms limit",
+        "Chat Rooms limit",
         "Support 2 languages",
         "48-hour support response time "
     ],
