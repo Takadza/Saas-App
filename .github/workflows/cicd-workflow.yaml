@@ -12,7 +12,9 @@ jobs:
         uses: actions/checkout@v3
       
       - name: Login to Docker Hub
-        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+       with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_USERPASSWORD }}
       
       - name: Build Docker image
         run: docker build -t ntakadza/saas-translation-app .
